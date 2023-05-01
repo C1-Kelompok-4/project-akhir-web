@@ -41,7 +41,7 @@ if(isset($_COOKIE['user_id'])){
       </div>
 
       <div class="content">
-         <h3>Why Choose <span class="efek-ngetik"; style="color :#353535"></span></h3>
+         <h3>Kenapa harus memilih Siacademy <span class="efek-ngetik"; style="color :#353535"></span></h3>
          <p>Karena Siacademy menyediakan kelas pelatihan pemrograman secara gratis yang lengkap dengan tutor yang keren</p>
          <a href="courses.html" class="inline-btn">our courses</a>
       </div>
@@ -103,7 +103,7 @@ if(isset($_COOKIE['user_id'])){
          <div class="user">
             <img src="images/pic-2.jpg" alt="">
             <div>
-               <h3>Belva/h3>
+               <h3>Belva</h3>
                <div class="stars">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>

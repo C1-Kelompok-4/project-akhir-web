@@ -1,6 +1,6 @@
 <?php
 
-include 'components/connect.php';
+include '../components/connect.php';
 
 if(isset($_COOKIE['user_id'])){
    $user_id = $_COOKIE['user_id'];
@@ -29,18 +29,18 @@ $total_bookmarked = $select_bookmark->rowCount();
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Siacademy</title>
-   <link rel="shortcut icon" href="images/silogoo.png" type="image/png">
+   <link rel="shortcut icon" href="../images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="../css/style.css">
 
 </head>
 <body>
 
-<?php include 'components/user_header.php'; ?>
+<?php include '../components/mentor_header.php'; ?>
 
 <!-- quick select section starts  -->
 
@@ -58,7 +58,7 @@ $total_bookmarked = $select_bookmark->rowCount();
          <p>Total likes : <span><?= $total_likes; ?></span></p>
          <a href="likes.php" class="inline-btn">Lihat Likes</a>
          <p>Total Komen : <span><?= $total_comments; ?></span></p>
-         <a href="comments.php" class="inline-btn">Lihat Komen</a>
+         <a href="comment.php" class="inline-btn">Lihat Komen</a>
          <p>Playlist Disimpan : <span><?= $total_bookmarked; ?></span></p>
          <a href="bookmark.php" class="inline-btn">Lihat Bookmark</a>
       </div>
@@ -102,12 +102,6 @@ $total_bookmarked = $select_bookmark->rowCount();
          </div>
       </div>
 
-      <div class="box tutor">
-         <h3 class="title">Yuk jadi Tutor !</h3>
-         <p>Bersama Siacademy membantu anak bangsa pintar teknologi.</p>
-         <a href="admin/register.php" class="inline-btn">Klik disini</a>
-      </div>
-
    </div>
 
 </section>
@@ -135,13 +129,13 @@ $total_bookmarked = $select_bookmark->rowCount();
       ?>
       <div class="box">
          <div class="tutor">
-            <img src="uploaded_files/<?= $fetch_tutor['image']; ?>" alt="">
+            <img src="../uploaded_files/<?= $fetch_tutor['image']; ?>" alt="">
             <div>
                <h3><?= $fetch_tutor['name']; ?></h3>
                <span><?= $fetch_course['date']; ?></span>
             </div>
          </div>
-         <img src="uploaded_files/<?= $fetch_course['thumb']; ?>" class="thumb" alt="">
+         <img src="../uploaded_files/<?= $fetch_course['thumb']; ?>" class="thumb" alt="">
          <h3 class="title"><?= $fetch_course['title']; ?></h3>
          <a href="playlist.php?get_id=<?= $course_id; ?>" class="inline-btn">Lihat Playlist</a>
       </div>
@@ -174,11 +168,11 @@ $total_bookmarked = $select_bookmark->rowCount();
 
 
 <!-- footer section starts  -->
-<?php include 'components/footer.php'; ?>
+<?php include '../components/footer.php'; ?>
 <!-- footer section ends -->
 
 <!-- custom js file link  -->
-<script src="js/script.js"></script>
+<script src="../js/script.js"></script>
    
 </body>
 </html>

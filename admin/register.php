@@ -1,18 +1,14 @@
 <?php
 
-include 'components/connect.php';
-
-if(isset($_COOKIE['user_id'])){
-   $user_id = $_COOKIE['user_id'];
-}else{
-   $user_id = '';
-}
+include '../components/connect.php';
 
 if(isset($_POST['submit'])){
 
    $id = unique_id();
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
+   $profession = $_POST['profession'];
+   $profession = filter_var($profession, FILTER_SANITIZE_STRING);
    $email = $_POST['email'];
    $email = filter_var($email, FILTER_SANITIZE_STRING);
    $pass = sha1($_POST['pass']);
@@ -26,29 +22,21 @@ if(isset($_POST['submit'])){
    $rename = unique_id().'.'.$ext;
    $image_size = $_FILES['image']['size'];
    $image_tmp_name = $_FILES['image']['tmp_name'];
-   $image_folder = 'uploaded_files/'.$rename;
+   $image_folder = '../uploaded_files/'.$rename;
 
-   $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
-   $select_user->execute([$email]);
+   $select_tutor = $conn->prepare("SELECT * FROM `tutors` WHERE email = ?");
+   $select_tutor->execute([$email]);
    
-   if($select_user->rowCount() > 0){
+   if($select_tutor->rowCount() > 0){
       $message[] = 'email already taken!';
    }else{
       if($pass != $cpass){
          $message[] = 'confirm passowrd not matched!';
       }else{
-         $insert_user = $conn->prepare("INSERT INTO `users`(id, name, email, password, image) VALUES(?,?,?,?,?)");
-         $insert_user->execute([$id, $name, $email, $cpass, $rename]);
+         $insert_tutor = $conn->prepare("INSERT INTO `tutors`(id, name, profession, email, password, image) VALUES(?,?,?,?,?,?)");
+         $insert_tutor->execute([$id, $name, $profession, $email, $cpass, $rename]);
          move_uploaded_file($image_tmp_name, $image_folder);
-         
-         $verify_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? AND password = ? LIMIT 1");
-         $verify_user->execute([$email, $pass]);
-         $row = $verify_user->fetch(PDO::FETCH_ASSOC);
-         
-         if($verify_user->rowCount() > 0){
-            setcookie('user_id', $row['id'], time() + 60*60*24*30, '/');
-            header('location:home.php');
-         }
+         $message[] = 'New tutor registered! Please LOGIN now';
       }
    }
 
@@ -62,19 +50,31 @@ if(isset($_POST['submit'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Home</title>
+   <title>Register</title>
    <link rel="shortcut icon" href="images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
-
+   <link rel="stylesheet" href="../css/admin_style.css">
 </head>
-<body>
+<body style="padding-left: 0;">
 
-<?php include 'components/user_header.php'; ?>
+<?php
+if(isset($message)){
+   foreach($message as $message){
+      echo '
+      <div class="message form">
+         <span>'.$message.'</span>
+         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+      </div>
+      ';
+   }
+}
+?>
+
+<!-- register section starts  -->
 
 <section class="form-container">
 
@@ -84,6 +84,21 @@ if(isset($_POST['submit'])){
          <div class="col">
             <p>Name <span>*</span></p>
             <input type="text" name="name" placeholder="enter your name" maxlength="50" required class="box">
+            <p>Profession <span>*</span></p>
+            <select name="profession" class="box" required>
+               <option value="" disabled selected>-- Select your profession</option>
+               <option value="developer">Developer</option>
+               <option value="desginer">Desginer</option>
+               <option value="musician">Musician</option>
+               <option value="biologist">Biologist</option>
+               <option value="teacher">Teacher</option>
+               <option value="engineer">Engineer</option>
+               <option value="lawyer">Lawyer</option>
+               <option value="accountant">Accountant</option>
+               <option value="doctor">Doctor</option>
+               <option value="journalist">Journalist</option>
+               <option value="photographer">Photographer</option>
+            </select>
             <p>Email <span>*</span></p>
             <input type="email" name="email" placeholder="enter your email" maxlength="20" required class="box">
          </div>
@@ -92,16 +107,17 @@ if(isset($_POST['submit'])){
             <input type="password" name="pass" placeholder="enter your password" maxlength="20" required class="box">
             <p>Confirm Password <span>*</span></p>
             <input type="password" name="cpass" placeholder="confirm your password" maxlength="20" required class="box">
+            <p>Select Pic <span>*</span></p>
+            <input type="file" name="image" accept="image/*" required class="box">
          </div>
       </div>
-      <p>Select Pic <span>*</span></p>
-      <input type="file" name="image" accept="image/*" required class="box">
       <p class="link">Already have an account? <a href="login.php">Login</a></p>
       <input type="submit" name="submit" value="register now" class="btn">
    </form>
 
 </section>
 
+<!-- register section ends -->
 
 
 
@@ -113,10 +129,29 @@ if(isset($_POST['submit'])){
 
 
 
-<?php include 'components/footer.php'; ?>
 
-<!-- custom js file link  -->
-<script src="js/script.js"></script>
+<script>
+
+let darkMode = localStorage.getItem('dark-mode');
+let body = document.body;
+
+const enabelDarkMode = () =>{
+   body.classList.add('dark');
+   localStorage.setItem('dark-mode', 'enabled');
+}
+
+const disableDarkMode = () =>{
+   body.classList.remove('dark');
+   localStorage.setItem('dark-mode', 'disabled');
+}
+
+if(darkMode === 'enabled'){
+   enabelDarkMode();
+}else{
+   disableDarkMode();
+}
+
+</script>
    
 </body>
 </html>
