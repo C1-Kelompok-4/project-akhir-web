@@ -444,6 +444,10 @@ section{
    color: var(--white)  ;
 }
 
+.more-btn .inline-option-btn{
+   background-color: var(--main-color);
+}
+
 .courses .box-container{
    display: grid;
    grid-template-columns: repeat(auto-fit, 35rem);

@@ -16,7 +16,7 @@ if(isset($_COOKIE['user_id'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>teachers</title>
+   <title>Tutors</title>
    <link rel="shortcut icon" href="images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
@@ -44,9 +44,9 @@ if(isset($_COOKIE['user_id'])){
    <div class="box-container">
 
       <div class="box offer">
-         <h3>Become a Tutor</h3>
+         <h3>Yuk jadi Tutor !</h3>
          <p>Bersama Siacademy memajukan generasi bangsa!</p>
-         <a href="admin/register.php" class="inline-btn">get started</a>
+         <a href="mentor/register.php" class="inline-btn">Klik disini</a>
       </div>
 
       <?php
