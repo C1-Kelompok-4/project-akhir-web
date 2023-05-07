@@ -42,11 +42,11 @@ if(isset($_POST['submit'])){
 <body style="padding-left: 0;">
 
 <?php
-if(isset($message)){
-   foreach($message as $message){
+if (isset($messages)) {
+   foreach ($messages as $msg) {
       echo '
       <div class="message form">
-         <span>'.$message.'</span>
+         <span>'.$msg.'</span>
          <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
       </div>
       ';
@@ -60,17 +60,17 @@ if(isset($message)){
 
    <form action="" method="post" enctype="multipart/form-data" class="login">
       <h3>welcome back!</h3>
-      <p>Email <span>*</span></p>
+      <p>your email <span>*</span></p>
       <input type="email" name="email" placeholder="enter your email" maxlength="20" required class="box">
-      <p>Password <span>*</span></p>
+      <p>your password <span>*</span></p>
       <input type="password" name="pass" placeholder="enter your password" maxlength="20" required class="box">
-      <p class="link">Don't have an account? <a href="register.php">Register</a></p>
+      <p class="link">don't have an account? <a href="register.php">register new</a></p>
       <input type="submit" name="submit" value="login now" class="btn">
    </form>
 
 </section>
 
-<!-- register section ends -->
+<!-- registe section ends -->
 
 
 

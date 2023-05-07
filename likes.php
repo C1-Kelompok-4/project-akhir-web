@@ -24,7 +24,7 @@ if(isset($_POST['remove'])){
          $message[] = 'removed from likes!';
       }
    }else{
-      $message[] = 'Login dahulu!';
+      $message[] = 'please login first!';
    }
 
 }
@@ -37,8 +37,7 @@ if(isset($_POST['remove'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Video yang disukai</title>
-   <link rel="shortcut icon" href="images/silogoo.png" type="image/png">
+   <title>liked videos</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -55,7 +54,7 @@ if(isset($_POST['remove'])){
 
 <section class="liked-videos">
 
-   <h1 class="heading">Video yang disukai</h1>
+   <h1 class="heading">liked videos</h1>
 
    <div class="box-container">
 
@@ -88,17 +87,17 @@ if(isset($_POST['remove'])){
       <form action="" method="post" class="flex-btn">
          <input type="hidden" name="content_id" value="<?= $fetch_contents['id']; ?>">
          <a href="watch_video.php?get_id=<?= $fetch_contents['id']; ?>" class="inline-btn">watch video</a>
-         <input type="submit" value="hapus" class="inline-delete-btn" name="hapus">
+         <input type="submit" value="remove" class="inline-delete-btn" name="remove">
       </form>
    </div>
    <?php
             }
          }else{
-            echo '<p class="emtpy">Konten tidak ditemukan!</p>';         
+            echo '<p class="emtpy">content was not found!</p>';         
          }
       }
    }else{
-      echo '<p class="empty">Tidak ada yang disukai!</p>';
+      echo '<p class="empty">nothing added to likes yet!</p>';
    }
    ?>
 

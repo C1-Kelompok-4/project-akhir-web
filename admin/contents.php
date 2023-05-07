@@ -64,7 +64,7 @@ if(isset($_POST['delete_video'])){
    <div class="box-container">
 
    <div class="box" style="text-align: center;">
-      <h3 class="title" style="margin-bottom: .5rem;">Create new content</h3>
+      <h3 class="title" style="margin-bottom: .5rem;">create new content</h3>
       <a href="add_content.php" class="btn">add content</a>
    </div>
 
@@ -92,7 +92,7 @@ if(isset($_POST['delete_video'])){
    <?php
          }
       }else{
-         echo '<p class="empty">No contents added yet!</p>';
+         echo '<p class="empty">no contents added yet!</p>';
       }
    ?>
 

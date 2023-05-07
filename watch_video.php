@@ -77,11 +77,11 @@ if(isset($_POST['add_comment'])){
          }
 
       }else{
-         $message[] = 'Terjadi kesalahan!';
+         $message[] = 'something went wrong!';
       }
 
    }else{
-      $message[] = 'Silahkan login dahulu!';
+      $message[] = 'please login first!';
    }
 
 }
@@ -132,8 +132,7 @@ if(isset($_POST['update_now'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Watch Video</title>
-   <link rel="shortcut icon" href="images/silogoo.png" type="image/png">
+   <title>watch video</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -159,7 +158,7 @@ if(isset($_POST['update_now'])){
    <h1 class="heading">edti comment</h1>
    <form action="" method="post">
       <input type="hidden" name="update_id" value="<?= $fetch_edit_comment['id']; ?>">
-      <textarea name="update_box" class="box" maxlength="1000" required placeholder="Silahkan masukkan komen" cols="30" rows="10"><?= $fetch_edit_comment['comment']; ?></textarea>
+      <textarea name="update_box" class="box" maxlength="1000" required placeholder="please enter your comment" cols="30" rows="10"><?= $fetch_edit_comment['comment']; ?></textarea>
       <div class="flex">
          <a href="watch_video.php?get_id=<?= $get_id; ?>" class="inline-option-btn">cancel edit</a>
          <input type="submit" value="update now" name="update_now" class="inline-btn">
@@ -168,7 +167,7 @@ if(isset($_POST['update_now'])){
 </section>
 <?php
    }else{
-      $message[] = 'Komen tidak ditemukan!';
+      $message[] = 'comment was not found!';
    }
 }
 ?>
@@ -229,7 +228,7 @@ if(isset($_POST['update_now'])){
    <?php
          }
       }else{
-         echo '<p class="empty">Tidak ada video!</p>';
+         echo '<p class="empty">no videos added yet!</p>';
       }
    ?>
 
@@ -241,15 +240,15 @@ if(isset($_POST['update_now'])){
 
 <section class="comments">
 
-   <h1 class="heading">Tambahkan komen</h1>
+   <h1 class="heading">add a comment</h1>
 
    <form action="" method="post" class="add-comment">
       <input type="hidden" name="content_id" value="<?= $get_id; ?>">
-      <textarea name="comment_box" required placeholder="Ketik komenmu..." maxlength="1000" cols="30" rows="10"></textarea>
+      <textarea name="comment_box" required placeholder="write your comment..." maxlength="1000" cols="30" rows="10"></textarea>
       <input type="submit" value="add comment" name="add_comment" class="inline-btn">
    </form>
 
-   <h1 class="heading">Komen Pengguna</h1>
+   <h1 class="heading">user comments</h1>
 
    
    <div class="show-comments">
@@ -284,9 +283,9 @@ if(isset($_POST['update_now'])){
          ?>
       </div>
       <?php
-      }
+       }
       }else{
-         echo '<p class="empty">Tidak ada komentar!</p>';
+         echo '<p class="empty">no comments added yet!</p>';
       }
       ?>
       </div>

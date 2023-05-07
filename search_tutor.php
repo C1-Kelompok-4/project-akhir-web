@@ -17,7 +17,6 @@ if(isset($_COOKIE['user_id'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>courses</title>
-   <link rel="shortcut icon" href="images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -32,10 +31,10 @@ if(isset($_COOKIE['user_id'])){
 
 <section class="teachers">
 
-   <h1 class="heading">Tutor Berpengalaman</h1>
+   <h1 class="heading">expert tutors</h1>
 
    <form action="" method="post" class="search-tutor">
-      <input type="text" name="search_tutor" maxlength="100" placeholder="Cari tutor..." required>
+      <input type="text" name="search_tutor" maxlength="100" placeholder="search tutor..." required>
       <button type="submit" name="search_tutor_btn" class="fas fa-search"></button>
    </form>
 
@@ -87,10 +86,10 @@ if(isset($_COOKIE['user_id'])){
       <?php
                }
             }else{
-               echo '<p class="empty">Tidak ada hasil!</p>';
+               echo '<p class="empty">no results found!</p>';
             }
          }else{
-            echo '<p class="empty">Mohon cari sesuatu!</p>';
+            echo '<p class="empty">please search something!</p>';
          }
       ?>
 
