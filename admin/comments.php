@@ -36,7 +36,6 @@ if(isset($_POST['delete_comment'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Dashboard</title>
-   <link rel="shortcut icon" href="../images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -47,7 +46,7 @@ if(isset($_POST['delete_comment'])){
 </head>
 <body>
 
-<?php include '../components/mentor_header.php'; ?>
+<?php include '../components/admin_header.php'; ?>
    
 
 <section class="comments">
@@ -76,7 +75,7 @@ if(isset($_POST['delete_comment'])){
       <?php
        }
       }else{
-         echo '<p class="empty">No comments added yet!</p>';
+         echo '<p class="empty">no comments added yet!</p>';
       }
       ?>
       </div>
@@ -98,7 +97,7 @@ if(isset($_POST['delete_comment'])){
 
 <?php include '../components/footer.php'; ?>
 
-<script src="../js/script.js"></script>
+<script src="../js/admin_script.js"></script>
 
 </body>
 </html>

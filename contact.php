@@ -23,11 +23,11 @@ if(isset($_POST['submit'])){
    $select_contact->execute([$name, $email, $number, $msg]);
 
    if($select_contact->rowCount() > 0){
-      $message[] = 'Pesan Sudah Terkirim!';
+      $message[] = 'message sent already!';
    }else{
       $insert_message = $conn->prepare("INSERT INTO `contact`(name, email, number, message) VALUES(?,?,?,?)");
       $insert_message->execute([$name, $email, $number, $msg]);
-      $message[] = 'Sukses Mengirim Pesan';
+      $message[] = 'message sent successfully!';
    }
 
 }
@@ -40,8 +40,7 @@ if(isset($_POST['submit'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Contact</title>
-   <link rel="shortcut icon" href="images/silogoo.png" type="image/png">
+   <title>contact</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -66,11 +65,11 @@ if(isset($_POST['submit'])){
 
       <form action="" method="post">
          <h3>get in touch</h3>
-         <input type="text" placeholder="Masukkan nama" required maxlength="100" name="name" class="box">
-         <input type="email" placeholder="Masukkan email" required maxlength="100" name="email" class="box">
-         <input type="number" min="0" max="9999999999" placeholder="Masukan nomor" required maxlength="10" name="number" class="box">
-         <textarea name="msg" class="box" placeholder="Masukkan pesan" required cols="30" rows="10" maxlength="1000"></textarea>
-         <input type="submit" value="Kirim pesan" class="inline-btn" name="submit">
+         <input type="text" placeholder="enter your name" required maxlength="100" name="name" class="box">
+         <input type="email" placeholder="enter your email" required maxlength="100" name="email" class="box">
+         <input type="number" min="0" max="9999999999" placeholder="enter your number" required maxlength="10" name="number" class="box">
+         <textarea name="msg" class="box" placeholder="enter your message" required cols="30" rows="10" maxlength="1000"></textarea>
+         <input type="submit" value="send message" class="inline-btn" name="submit">
       </form>
 
    </div>
@@ -79,22 +78,22 @@ if(isset($_POST['submit'])){
 
       <div class="box">
          <i class="fas fa-phone"></i>
-         <h3>Nomor Handphone</h3>
-         <a href="tel:0822-8899-9870">0822-8899-9870</a>
-         <a href="tel:0852-3389-4769">0852-3389-4769</a>
+         <h3>phone number</h3>
+         <a href="tel:1234567890">123-456-7890</a>
+         <a href="tel:1112223333">111-222-3333</a>
       </div>
 
       <div class="box">
          <i class="fas fa-envelope"></i>
-         <h3>Alamat Email</h3>
-         <a href="mailto:utariwardhanaa@gmail.com">utariwardhanaa@gmail.com</a>
-         <a href="mailto:andinabila@gmail.com">andinabila@gmail.com</a>
+         <h3>email address</h3>
+         <a href="mailto:shaikhanas@gmail.com">shaikhanas@gmail.come</a>
+         <a href="mailto:anasbhai@gmail.com">anasbhai@gmail.come</a>
       </div>
 
       <div class="box">
          <i class="fas fa-map-marker-alt"></i>
-         <h3>Alamat Kantor</h3>
-         <a href="#">Jl.Perjuangan 7, No.36A, Sempaja Selatan</a>
+         <h3>office address</h3>
+         <a href="#">flat no. 1, a-1 building, jogeshwari, mumbai, india - 400104</a>
       </div>
 
 

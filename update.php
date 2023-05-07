@@ -21,11 +21,11 @@ if(isset($_POST['submit'])){
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
 
-if(!empty($name)){
+  if(!empty($name)){
    $update_name = $conn->prepare("UPDATE `users` SET name = ? WHERE id = ?");
    $update_name->execute([$name, $user_id]);
    $message[] = 'username updated successfully!';
-}
+  }
 
    $email = $_POST['email'];
    $email = filter_var($email, FILTER_SANITIZE_STRING);
@@ -74,16 +74,16 @@ if(!empty($name)){
 
    if($old_pass != $empty_pass){
       if($old_pass != $prev_pass){
-         $message[] = 'Password lama tidak sama!';
+         $message[] = 'old password not matched!';
       }elseif($new_pass != $cpass){
-         $message[] = 'Konfirmasi password!';
+         $message[] = 'confirm password not matched!';
       }else{
          if($new_pass != $empty_pass){
             $update_pass = $conn->prepare("UPDATE `users` SET password = ? WHERE id = ?");
             $update_pass->execute([$cpass, $user_id]);
-            $message[] = 'Password berhasil diperbaharui!';
+            $message[] = 'password updated successfully!';
          }else{
-            $message[] = 'Silahkan masukkan password baru!';
+            $message[] = 'please enter a new password!';
          }
       }
    }
@@ -99,7 +99,6 @@ if(!empty($name)){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>update profile</title>
-   <link rel="shortcut icon" href="images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -127,11 +126,11 @@ if(!empty($name)){
          </div>
          <div class="col">
                <p>old password</p>
-               <input type="password" name="old_pass" placeholder="Masukkan password lama" maxlength="50" class="box">
+               <input type="password" name="old_pass" placeholder="enter your old password" maxlength="50" class="box">
                <p>new password</p>
-               <input type="password" name="new_pass" placeholder="Masukkan password baru" maxlength="50" class="box">
+               <input type="password" name="new_pass" placeholder="enter your new password" maxlength="50" class="box">
                <p>confirm password</p>
-               <input type="password" name="cpass" placeholder="Konfirmasi password baru" maxlength="50" class="box">
+               <input type="password" name="cpass" placeholder="confirm your new password" maxlength="50" class="box">
          </div>
       </div>
       <input type="submit" name="submit" value="update profile" class="btn">
