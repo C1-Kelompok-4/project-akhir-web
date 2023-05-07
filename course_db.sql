@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2022 at 05:35 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Waktu pembuatan: 07 Bulan Mei 2023 pada 11.22
+-- Versi server: 10.4.28-MariaDB
+-- Versi PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,18 +24,39 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bookmark`
+-- Struktur dari tabel `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `admin`
+--
+
+INSERT INTO `admin` (`id`, `name`, `email`, `password`, `image`) VALUES
+('A691Liurr20czR8iNULq', 'Prince Din', 'prince@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '9GZYeYb5HlwvfBwV2RPO.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `bookmark`
 --
 
 CREATE TABLE `bookmark` (
   `user_id` varchar(20) NOT NULL,
   `playlist_id` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Struktur dari tabel `comments`
 --
 
 CREATE TABLE `comments` (
@@ -45,12 +66,12 @@ CREATE TABLE `comments` (
   `tutor_id` varchar(20) NOT NULL,
   `comment` varchar(1000) NOT NULL,
   `date` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contact`
+-- Struktur dari tabel `contact`
 --
 
 CREATE TABLE `contact` (
@@ -58,12 +79,12 @@ CREATE TABLE `contact` (
   `email` varchar(50) NOT NULL,
   `number` int(10) NOT NULL,
   `message` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content`
+-- Struktur dari tabel `content`
 --
 
 CREATE TABLE `content` (
@@ -76,24 +97,24 @@ CREATE TABLE `content` (
   `thumb` varchar(100) NOT NULL,
   `date` date NOT NULL DEFAULT current_timestamp(),
   `status` varchar(20) NOT NULL DEFAULT 'deactive'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `likes`
+-- Struktur dari tabel `likes`
 --
 
 CREATE TABLE `likes` (
   `user_id` varchar(20) NOT NULL,
   `tutor_id` varchar(20) NOT NULL,
   `content_id` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `playlist`
+-- Struktur dari tabel `playlist`
 --
 
 CREATE TABLE `playlist` (
@@ -104,12 +125,12 @@ CREATE TABLE `playlist` (
   `thumb` varchar(100) NOT NULL,
   `date` date NOT NULL DEFAULT current_timestamp(),
   `status` varchar(20) NOT NULL DEFAULT 'deactive'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tutors`
+-- Struktur dari tabel `tutors`
 --
 
 CREATE TABLE `tutors` (
@@ -119,12 +140,12 @@ CREATE TABLE `tutors` (
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `image` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -133,7 +154,7 @@ CREATE TABLE `users` (
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `image` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
