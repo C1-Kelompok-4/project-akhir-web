@@ -2,12 +2,8 @@
 
 include 'components/connect.php';
 
-
-if(isset($_COOKIE['user_id'])){
-   $user_id = $_COOKIE['user_id'];
-}else{
-   $user_id = '';
-}
+// Mulai session
+session_start();
 
 if(isset($_POST['submit'])){
 
@@ -69,10 +65,12 @@ if(isset($_POST['submit'])){
          $verify_user->execute([$email, $pass]);
          $row = $verify_user->fetch(PDO::FETCH_ASSOC);
          
+        // Setelah user berhasil login
          if($verify_user->rowCount() > 0){
-            setcookie('user_id', $row['id'], time() + 60*60*24*30, '/');
-            header('location:home.php');
+         $_SESSION['user_id'] = $row['id'];
+         header('location:login.php');
          }
+
       }
    }
 }
@@ -85,45 +83,46 @@ if(isset($_POST['submit'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>home</title>
+   <title>Register</title>
+   <link rel="shortcut icon" href="images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/admin_style.css">
 
 </head>
-<body>
+<body style="padding-left: 0;">
 
-<?php include 'components/user_header.php'; ?>
+
 
 <section class="form-container">
 
 <form class="register" action="" method="post" enctype="multipart/form-data">
-      <h3>create account</h3>
+      <h3>Create Account</h3>
       <div class="flex">
          <div class="col">
-            <p>your name <span>*</span></p>
+            <p>Name <span>*</span></p>
             <input type="text" name="name" placeholder="enter your name" maxlength="50" required class="box">
-<p>your email <span>*</span></p>
+<p>Email <span>*</span></p>
 <input type="email" name="email" placeholder="enter your email" maxlength="50" required class="box">
 </div>
 <div class="col">
-<p>your password <span>*</span></p>
+<p>Password <span>*</span></p>
 <input type="password" name="pass" placeholder="enter your password" maxlength="20" required class="box">
-<p>confirm password <span>*</span></p>
+<p>Confirm Password <span>*</span></p>
 <input type="password" name="cpass" placeholder="confirm your password" maxlength="20" required class="box">
 </div>
 </div>
-<p>your role <span>*</span></p>
+<p>Role <span>*</span></p>
 <select name="role" class="box" required onchange="toggleProfession(this.value)">
 <option value="" disabled selected>Select your role</option>
 <option value="1">Tutor</option>
 <option value="2">User</option>
 <option value="3">Admin</option>
 </select>
-<p>your profession <span>*</span></p>
+<p>Profession <span>*</span></p>
 <select name="profession" class="box" required id="professionSelect" disabled>
 <option value="" disabled selected>Select your profession</option>
 <option value="developer">Developer</option>
@@ -138,10 +137,10 @@ if(isset($_POST['submit'])){
 <option value="journalist">Journalist</option>
 <option value="photographer">Photographer</option>
 </select>
-<p>select pic <span>*</span></p>
+<p>Select Pic <span>*</span></p>
 <input type="file" name="image" accept="image/*" required class="box">
-<p class="link">already have an account? <a href="login.php">login now</a></p>
-<input type="submit" name="submit" value="register now" class="btn">
+<p class="link">Already have an account? <a href="login.php">Login</a></p>
+<input type="submit" name="submit" value="register now" class="btn";>
 </form>
 
 <script>

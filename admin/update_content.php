@@ -1,11 +1,12 @@
 <?php
 
+session_start();
 include '../components/connect.php';
 
-if(isset($_COOKIE['tutor_id'])){
-   $tutor_id = $_COOKIE['tutor_id'];
+if(isset($_SESSION['admin_id'])){
+   $admin_id = $_SESSION['admin_id'];
 }else{
-   $tutor_id = '';
+   $admin_id = '';
    header('location:login.php');
 }
 
@@ -117,6 +118,7 @@ if(isset($_POST['delete_video'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Update video</title>
+   <link rel="shortcut icon" href="../images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -134,8 +136,8 @@ if(isset($_POST['delete_video'])){
    <h1 class="heading">update content</h1>
 
    <?php
-      $select_videos = $conn->prepare("SELECT * FROM `content` WHERE id = ? AND tutor_id = ?");
-      $select_videos->execute([$get_id, $tutor_id]);
+      $select_videos = $conn->prepare("SELECT * FROM `content` WHERE id = ? AND admin_id = ?");
+      $select_videos->execute([$get_id, $admin_id]);
       if($select_videos->rowCount() > 0){
          while($fecth_videos = $select_videos->fetch(PDO::FETCH_ASSOC)){ 
             $video_id = $fecth_videos['id'];
@@ -158,8 +160,8 @@ if(isset($_POST['delete_video'])){
       <select name="playlist" class="box">
          <option value="<?= $fecth_videos['playlist_id']; ?>" selected>--select playlist</option>
          <?php
-         $select_playlists = $conn->prepare("SELECT * FROM `playlist` WHERE tutor_id = ?");
-         $select_playlists->execute([$tutor_id]);
+         $select_playlists = $conn->prepare("SELECT * FROM `playlist` WHERE admin_id = ?");
+         $select_playlists->execute([$admin_id]);
          if($select_playlists->rowCount() > 0){
             while($fetch_playlist = $select_playlists->fetch(PDO::FETCH_ASSOC)){
          ?>

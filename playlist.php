@@ -1,11 +1,14 @@
 <?php
 
+session_start();
+
 include 'components/connect.php';
 
-if(isset($_COOKIE['user_id'])){
-   $user_id = $_COOKIE['user_id'];
+if(isset($_SESSION['user_id'])){
+   $user_id = $_SESSION['user_id'];
 }else{
    $user_id = '';
+   header('location:login.php');
 }
 
 if(isset($_GET['get_id'])){
@@ -82,9 +85,9 @@ if(isset($_POST['save_list'])){
             $count_videos->execute([$playlist_id]);
             $total_videos = $count_videos->rowCount();
 
-            $select_tutor = $conn->prepare("SELECT * FROM `tutors` WHERE id = ? LIMIT 1");
-            $select_tutor->execute([$fetch_playlist['tutor_id']]);
-            $fetch_tutor = $select_tutor->fetch(PDO::FETCH_ASSOC);
+            $select_admin = $conn->prepare("SELECT * FROM `admin` WHERE id = ? LIMIT 1");
+            $select_admin->execute([$fetch_playlist['admin_id']]);
+            $fetch_admin = $select_admin->fetch(PDO::FETCH_ASSOC);
 
             $select_bookmark = $conn->prepare("SELECT * FROM `bookmark` WHERE user_id = ? AND playlist_id = ?");
             $select_bookmark->execute([$user_id, $playlist_id]);
@@ -114,10 +117,10 @@ if(isset($_POST['save_list'])){
 
       <div class="col">
          <div class="tutor">
-            <img src="uploaded_files/<?= $fetch_tutor['image']; ?>" alt="">
+            <img src="uploaded_files/<?= $fetch_admin['image']; ?>" alt="">
             <div>
-               <h3><?= $fetch_tutor['name']; ?></h3>
-               <span><?= $fetch_tutor['profession']; ?></span>
+               <h3><?= $fetch_admin['name']; ?></h3>
+               <span><?= $fetch_admin['profession']; ?></span>
             </div>
          </div>
          <div class="details">

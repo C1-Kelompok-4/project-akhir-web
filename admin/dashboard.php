@@ -2,27 +2,29 @@
 
 include '../components/connect.php';
 
-if(isset($_COOKIE['tutor_id'])){
-   $tutor_id = $_COOKIE['tutor_id'];
+session_start();
+
+if(isset($_SESSION['admin_id'])){
+   $admin_id = $_SESSION['admin_id'];
 }else{
-   $tutor_id = '';
+   $admin_id = '';
    header('location:login.php');
 }
 
-$select_contents = $conn->prepare("SELECT * FROM `content` WHERE tutor_id = ?");
-$select_contents->execute([$tutor_id]);
+$select_contents = $conn->prepare("SELECT * FROM `content` WHERE admin_id = ?");
+$select_contents->execute([$admin_id]);
 $total_contents = $select_contents->rowCount();
 
-$select_playlists = $conn->prepare("SELECT * FROM `playlist` WHERE tutor_id = ?");
-$select_playlists->execute([$tutor_id]);
+$select_playlists = $conn->prepare("SELECT * FROM `playlist` WHERE admin_id = ?");
+$select_playlists->execute([$admin_id]);
 $total_playlists = $select_playlists->rowCount();
 
-$select_likes = $conn->prepare("SELECT * FROM `likes` WHERE tutor_id = ?");
-$select_likes->execute([$tutor_id]);
+$select_likes = $conn->prepare("SELECT * FROM `likes` WHERE admin_id = ?");
+$select_likes->execute([$admin_id]);
 $total_likes = $select_likes->rowCount();
 
-$select_comments = $conn->prepare("SELECT * FROM `comments` WHERE tutor_id = ?");
-$select_comments->execute([$tutor_id]);
+$select_comments = $conn->prepare("SELECT * FROM `comments` WHERE admin_id = ?");
+$select_comments->execute([$admin_id]);
 $total_comments = $select_comments->rowCount();
 
 ?>
@@ -34,6 +36,7 @@ $total_comments = $select_comments->rowCount();
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Dashboard</title>
+   <link rel="shortcut icon" href="../images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -53,9 +56,9 @@ $total_comments = $select_comments->rowCount();
    <div class="box-container">
 
       <div class="box">
-         <h3>welcome!</h3>
+         <h3>Welcome!</h3>
          <p><?= $fetch_profile['name']; ?></p>
-         <a href="profile.php" class="btn">view profile</a>
+         <a href="profile.php" class="btn">View Profile</a>
       </div>
 
       <div class="box">

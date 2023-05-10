@@ -1,11 +1,12 @@
 <?php
 
+session_start();
 include '../components/connect.php';
 
-if(isset($_COOKIE['tutor_id'])){
-   $tutor_id = $_COOKIE['tutor_id'];
+if(isset($_SESSION['admin_id'])){
+   $admin_id = $_SESSION['admin_id'];
 }else{
-   $tutor_id = '';
+   $adminr_id = '';
    header('location:login.php');
 }
 
@@ -68,7 +69,9 @@ if(isset($_POST['delete_comment'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>view content</title>
+   <title>View Content</title>
+   <link rel="shortcut icon" href="../images/silogoo.png" type="image/png">
+
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -85,18 +88,18 @@ if(isset($_POST['delete_comment'])){
 <section class="view-content">
 
    <?php
-      $select_content = $conn->prepare("SELECT * FROM `content` WHERE id = ? AND tutor_id = ?");
-      $select_content->execute([$get_id, $tutor_id]);
+      $select_content = $conn->prepare("SELECT * FROM `content` WHERE id = ? AND admin_id = ?");
+      $select_content->execute([$get_id, $admin_id]);
       if($select_content->rowCount() > 0){
          while($fetch_content = $select_content->fetch(PDO::FETCH_ASSOC)){
             $video_id = $fetch_content['id'];
 
-            $count_likes = $conn->prepare("SELECT * FROM `likes` WHERE tutor_id = ? AND content_id = ?");
-            $count_likes->execute([$tutor_id, $video_id]);
+            $count_likes = $conn->prepare("SELECT * FROM `likes` WHERE admin_id = ? AND content_id = ?");
+            $count_likes->execute([$admin_id, $video_id]);
             $total_likes = $count_likes->rowCount();
 
-            $count_comments = $conn->prepare("SELECT * FROM `comments` WHERE tutor_id = ? AND content_id = ?");
-            $count_comments->execute([$tutor_id, $video_id]);
+            $count_comments = $conn->prepare("SELECT * FROM `comments` WHERE admin_id = ? AND content_id = ?");
+            $count_comments->execute([$admin_id, $video_id]);
             $total_comments = $count_comments->rowCount();
    ?>
    <div class="container">

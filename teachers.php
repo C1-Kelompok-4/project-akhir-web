@@ -1,11 +1,14 @@
 <?php
 
+session_start();
+
 include 'components/connect.php';
 
-if(isset($_COOKIE['user_id'])){
-   $user_id = $_COOKIE['user_id'];
+if(isset($_SESSION['user_id'])){
+   $user_id = $_SESSION['user_id'];
 }else{
    $user_id = '';
+   header('location:login.php');
 }
 
 ?>
@@ -16,7 +19,8 @@ if(isset($_COOKIE['user_id'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>teachers</title>
+   <title>Tutors</title>
+   <link rel="shortcut icon" href="images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -33,19 +37,19 @@ if(isset($_COOKIE['user_id'])){
 
 <section class="teachers">
 
-   <h1 class="heading">expert tutors</h1>
+   <h1 class="heading">Tutor Berpengalaman</h1>
 
    <form action="search_tutor.php" method="post" class="search-tutor">
-      <input type="text" name="search_tutor" maxlength="100" placeholder="search tutor..." required>
+      <input type="text" name="search_tutor" maxlength="100" placeholder="Cari tutor..." required>
       <button type="submit" name="search_tutor_btn" class="fas fa-search"></button>
    </form>
 
    <div class="box-container">
 
       <div class="box offer">
-         <h3>become a tutor</h3>
-         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, magnam!</p>
-         <a href="admin/register.php" class="inline-btn">get started</a>
+         <h3>Yuk jadi Tutor !</h3>
+         <p>Bersama Siacademy memajukan generasi bangsa!</p>
+         <a href="mentor/register.php" class="inline-btn">Klik disini</a>
       </div>
 
       <?php
@@ -92,7 +96,7 @@ if(isset($_COOKIE['user_id'])){
       <?php
             }
          }else{
-            echo '<p class="empty">no tutors found!</p>';
+            echo '<p class="empty">Tutor tidak ditemukan!</p>';
          }
       ?>
 

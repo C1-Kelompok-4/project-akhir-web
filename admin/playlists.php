@@ -2,10 +2,12 @@
 
 include '../components/connect.php';
 
-if(isset($_COOKIE['tutor_id'])){
-   $tutor_id = $_COOKIE['tutor_id'];
+session_start();
+
+if(isset($_SESSION['admin_id'])){
+   $admin_id = $_SESSION['admin_id'];
 }else{
-   $tutor_id = '';
+   $admin_id = '';
    header('location:login.php');
 }
 
@@ -13,8 +15,8 @@ if(isset($_POST['delete'])){
    $delete_id = $_POST['playlist_id'];
    $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
 
-   $verify_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE id = ? AND tutor_id = ? LIMIT 1");
-   $verify_playlist->execute([$delete_id, $tutor_id]);
+   $verify_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE id = ? AND admin_id = ? LIMIT 1");
+   $verify_playlist->execute([$delete_id, $admin_id]);
 
    if($verify_playlist->rowCount() > 0){
 
@@ -43,6 +45,7 @@ if(isset($_POST['delete'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Playlists</title>
+   <link rel="shortcut icon" href="../images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -62,13 +65,13 @@ if(isset($_POST['delete'])){
    <div class="box-container">
    
       <div class="box" style="text-align: center;">
-         <h3 class="title" style="margin-bottom: .5rem;">create new playlist</h3>
+         <h3 class="title" style="margin-bottom: .5rem;">Create new playlist</h3>
          <a href="add_playlist.php" class="btn">add playlist</a>
       </div>
 
       <?php
-         $select_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE tutor_id = ? ORDER BY date DESC");
-         $select_playlist->execute([$tutor_id]);
+         $select_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE admin_id = ? ORDER BY date DESC");
+         $select_playlist->execute([$admin_id]);
          if($select_playlist->rowCount() > 0){
          while($fetch_playlist = $select_playlist->fetch(PDO::FETCH_ASSOC)){
             $playlist_id = $fetch_playlist['id'];
@@ -97,7 +100,7 @@ if(isset($_POST['delete'])){
       <?php
          } 
       }else{
-         echo '<p class="empty">no playlist added yet!</p>';
+         echo '<p class="empty">No playlist added yet!</p>';
       }
       ?>
 
