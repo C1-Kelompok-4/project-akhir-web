@@ -29,7 +29,7 @@ if(isset($_POST['like_content'])){
       $select_content->execute([$content_id]);
       $fetch_content = $select_content->fetch(PDO::FETCH_ASSOC);
 
-      $tutor_id = $fetch_content['tutor_id'];
+      $admin_id = $fetch_content['admin_id'];
 
       $select_likes = $conn->prepare("SELECT * FROM `likes` WHERE user_id = ? AND content_id = ?");
       $select_likes->execute([$user_id, $content_id]);
@@ -39,8 +39,8 @@ if(isset($_POST['like_content'])){
          $remove_likes->execute([$user_id, $content_id]);
          $message[] = 'removed from likes!';
       }else{
-         $insert_likes = $conn->prepare("INSERT INTO `likes`(user_id, tutor_id, content_id) VALUES(?,?,?)");
-         $insert_likes->execute([$user_id, $tutor_id, $content_id]);
+         $insert_likes = $conn->prepare("INSERT INTO `likes`(user_id, admin_id, content_id) VALUES(?,?,?)");
+         $insert_likes->execute([$user_id, $admin_id, $content_id]);
          $message[] = 'added to likes!';
       }
 
@@ -64,18 +64,18 @@ if(isset($_POST['add_comment'])){
       $select_content->execute([$content_id]);
       $fetch_content = $select_content->fetch(PDO::FETCH_ASSOC);
 
-      $tutor_id = $fetch_content['tutor_id'];
+      $admin_id = $fetch_content['admin_id'];
 
       if($select_content->rowCount() > 0){
 
-         $select_comment = $conn->prepare("SELECT * FROM `comments` WHERE content_id = ? AND user_id = ? AND tutor_id = ? AND comment = ?");
-         $select_comment->execute([$content_id, $user_id, $tutor_id, $comment_box]);
+         $select_comment = $conn->prepare("SELECT * FROM `comments` WHERE content_id = ? AND user_id = ? AND admin_id = ? AND comment = ?");
+         $select_comment->execute([$content_id, $user_id, $admin_id, $comment_box]);
 
          if($select_comment->rowCount() > 0){
             $message[] = 'comment already added!';
          }else{
-            $insert_comment = $conn->prepare("INSERT INTO `comments`(id, content_id, user_id, tutor_id, comment) VALUES(?,?,?,?,?)");
-            $insert_comment->execute([$id, $content_id, $user_id, $tutor_id, $comment_box]);
+            $insert_comment = $conn->prepare("INSERT INTO `comments`(id, content_id, user_id, admin_id, comment) VALUES(?,?,?,?,?)");
+            $insert_comment->execute([$id, $content_id, $user_id, $admin_id, $comment_box]);
             $message[] = 'new comment added!';
          }
 
@@ -176,7 +176,23 @@ if(isset($_POST['update_now'])){
 ?>
 
 <!-- watch video section starts  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Watch Video</title>
+   <link rel="shortcut icon" href="images/silogoo.png" type="image/png">
 
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
 <section class="watch-video">
 
    <?php
@@ -193,9 +209,9 @@ if(isset($_POST['update_now'])){
             $verify_likes = $conn->prepare("SELECT * FROM `likes` WHERE user_id = ? AND content_id = ?");
             $verify_likes->execute([$user_id, $content_id]);
 
-            $select_tutor = $conn->prepare("SELECT * FROM `tutors` WHERE id = ? LIMIT 1");
-            $select_tutor->execute([$fetch_content['tutor_id']]);
-            $fetch_tutor = $select_tutor->fetch(PDO::FETCH_ASSOC);
+            $select_admin = $conn->prepare("SELECT * FROM `admin` WHERE id = ? LIMIT 1");
+            $select_admin->execute([$fetch_content['admin_id']]);
+            $fetch_admin = $select_admin->fetch(PDO::FETCH_ASSOC);
    ?>
    <div class="video-details">
       <video src="uploaded_files/<?= $fetch_content['video']; ?>" class="video" poster="uploaded_files/<?= $fetch_content['thumb']; ?>" controls autoplay></video>
@@ -205,10 +221,10 @@ if(isset($_POST['update_now'])){
          <p><i class="fas fa-heart"></i><span><?= $total_likes; ?> likes</span></p>
       </div>
       <div class="tutor">
-         <img src="uploaded_files/<?= $fetch_tutor['image']; ?>" alt="">
+         <img src="uploaded_files/<?= $fetch_admin['image']; ?>" alt="">
          <div>
-            <h3><?= $fetch_tutor['name']; ?></h3>
-            <span><?= $fetch_tutor['profession']; ?></span>
+            <h3><?= $fetch_admin['name']; ?></h3>
+
          </div>
       </div>
       <form action="" method="post" class="flex">
