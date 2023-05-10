@@ -2,10 +2,12 @@
 
 include '../components/connect.php';
 
-if(isset($_COOKIE['tutor_id'])){
-   $tutor_id = $_COOKIE['tutor_id'];
+session_start();
+
+if(isset($_SESSION['admin_id'])){
+   $admin_id = $_SESSION['admin_id'];
 }else{
-   $tutor_id = '';
+   $admin_id = '';
    header('location:login.php');
 }
 
@@ -27,8 +29,8 @@ if(isset($_POST['submit'])){
    $image_tmp_name = $_FILES['image']['tmp_name'];
    $image_folder = '../uploaded_files/'.$rename;
 
-   $add_playlist = $conn->prepare("INSERT INTO `playlist`(id, tutor_id, title, description, thumb, status) VALUES(?,?,?,?,?,?)");
-   $add_playlist->execute([$id, $tutor_id, $title, $description, $rename, $status]);
+   $add_playlist = $conn->prepare("INSERT INTO `playlist`(id, admin_id, title, description, thumb, status) VALUES(?,?,?,?,?,?)");
+   $add_playlist->execute([$id, $admin_id, $title, $description, $rename, $status]);
 
    move_uploaded_file($image_tmp_name, $image_folder);
 
@@ -45,6 +47,7 @@ if(isset($_POST['submit'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Add Playlist</title>
+   <link rel="shortcut icon" href="../images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -64,7 +67,7 @@ if(isset($_POST['submit'])){
    <form action="" method="post" enctype="multipart/form-data">
       <p>playlist status <span>*</span></p>
       <select name="status" class="box" required>
-         <option value="" selected disabled>-- select status</option>
+         <option value="" selected disabled>select status</option>
          <option value="active">active</option>
          <option value="deactive">deactive</option>
       </select>

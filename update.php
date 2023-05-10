@@ -1,9 +1,11 @@
 <?php
 
+session_start();
+
 include 'components/connect.php';
 
-if(isset($_COOKIE['user_id'])){
-   $user_id = $_COOKIE['user_id'];
+if(isset($_SESSION['user_id'])){
+   $user_id = $_SESSION['user_id'];
 }else{
    $user_id = '';
    header('location:login.php');
@@ -21,11 +23,11 @@ if(isset($_POST['submit'])){
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
 
-  if(!empty($name)){
+if(!empty($name)){
    $update_name = $conn->prepare("UPDATE `users` SET name = ? WHERE id = ?");
    $update_name->execute([$name, $user_id]);
    $message[] = 'username updated successfully!';
-  }
+}
 
    $email = $_POST['email'];
    $email = filter_var($email, FILTER_SANITIZE_STRING);
@@ -74,16 +76,16 @@ if(isset($_POST['submit'])){
 
    if($old_pass != $empty_pass){
       if($old_pass != $prev_pass){
-         $message[] = 'old password not matched!';
+         $message[] = 'Password lama tidak sama!';
       }elseif($new_pass != $cpass){
-         $message[] = 'confirm password not matched!';
+         $message[] = 'Konfirmasi password!';
       }else{
          if($new_pass != $empty_pass){
             $update_pass = $conn->prepare("UPDATE `users` SET password = ? WHERE id = ?");
             $update_pass->execute([$cpass, $user_id]);
-            $message[] = 'password updated successfully!';
+            $message[] = 'Password berhasil diperbaharui!';
          }else{
-            $message[] = 'please enter a new password!';
+            $message[] = 'Silahkan masukkan password baru!';
          }
       }
    }
@@ -98,7 +100,8 @@ if(isset($_POST['submit'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>update profile</title>
+   <title>Update Profile</title>
+   <link rel="shortcut icon" href="images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -114,7 +117,7 @@ if(isset($_POST['submit'])){
 <section class="form-container" style="min-height: calc(100vh - 19rem);">
 
    <form action="" method="post" enctype="multipart/form-data">
-      <h3>update profile</h3>
+      <h3>Update Profile</h3>
       <div class="flex">
          <div class="col">
             <p>your name</p>
@@ -126,11 +129,11 @@ if(isset($_POST['submit'])){
          </div>
          <div class="col">
                <p>old password</p>
-               <input type="password" name="old_pass" placeholder="enter your old password" maxlength="50" class="box">
+               <input type="password" name="old_pass" placeholder="Masukkan password lama" maxlength="50" class="box">
                <p>new password</p>
-               <input type="password" name="new_pass" placeholder="enter your new password" maxlength="50" class="box">
+               <input type="password" name="new_pass" placeholder="Masukkan password baru" maxlength="50" class="box">
                <p>confirm password</p>
-               <input type="password" name="cpass" placeholder="confirm your new password" maxlength="50" class="box">
+               <input type="password" name="cpass" placeholder="Konfirmasi password baru" maxlength="50" class="box">
          </div>
       </div>
       <input type="submit" name="submit" value="update profile" class="btn">

@@ -2,10 +2,12 @@
 
 include '../components/connect.php';
 
-if(isset($_COOKIE['tutor_id'])){
-   $tutor_id = $_COOKIE['tutor_id'];
+session_start();
+
+if(isset($_SESSION['admin_id'])){
+   $admin_id = $_SESSION['admin_id'];
 }else{
-   $tutor_id = '';
+   $admin_id = '';
    header('location:login.php');
 }
 
@@ -35,7 +37,8 @@ if(isset($_POST['delete_comment'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Dashboard</title>
+   <title>Comment</title>
+   <link rel="shortcut icon" href="../images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -51,20 +54,20 @@ if(isset($_POST['delete_comment'])){
 
 <section class="comments">
 
-   <h1 class="heading">user comments</h1>
+   <h1 class="heading">User Comments</h1>
 
    
    <div class="show-comments">
       <?php
-         $select_comments = $conn->prepare("SELECT * FROM `comments` WHERE tutor_id = ?");
-         $select_comments->execute([$tutor_id]);
+         $select_comments = $conn->prepare("SELECT * FROM `comments` WHERE admin_id = ?");
+         $select_comments->execute([$admin_id]);
          if($select_comments->rowCount() > 0){
             while($fetch_comment = $select_comments->fetch(PDO::FETCH_ASSOC)){
                $select_content = $conn->prepare("SELECT * FROM `content` WHERE id = ?");
                $select_content->execute([$fetch_comment['content_id']]);
                $fetch_content = $select_content->fetch(PDO::FETCH_ASSOC);
       ?>
-      <div class="box" style="<?php if($fetch_comment['tutor_id'] == $tutor_id){echo 'order:-1;';} ?>">
+      <div class="box" style="<?php if($fetch_comment['admin_id'] == $admin_id){echo 'order:-1;';} ?>">
          <div class="content"><span><?= $fetch_comment['date']; ?></span><p> - <?= $fetch_content['title']; ?> - </p><a href="view_content.php?get_id=<?= $fetch_content['id']; ?>">view content</a></div>
          <p class="text"><?= $fetch_comment['comment']; ?></p>
          <form action="" method="post">
@@ -75,7 +78,7 @@ if(isset($_POST['delete_comment'])){
       <?php
        }
       }else{
-         echo '<p class="empty">no comments added yet!</p>';
+         echo '<p class="empty">No comments added yet!</p>';
       }
       ?>
       </div>
