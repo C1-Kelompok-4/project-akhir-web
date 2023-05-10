@@ -88,6 +88,11 @@ Jadi, mirip dengan penjelasan keduanya hanya saja pada admin ini tersedia untuk 
 ![WhatsApp Image 2023-05-10 at 22 33 58](https://github.com/bhaddbaeby/gambarreadme/assets/90855040/a4a79bb2-f60c-420c-8ed4-d2ba17b92d94)
 > Penjelasan : Ketika student logout, maka akan muncuk pop up alert seperti digambar
 
+- Melakukan komen
+![WhatsApp Image 2023-05-10 at 23 09 35](https://github.com/C1-Kelompok-4/project-akhir-web/assets/90855040/8a20b989-186d-40cc-93fa-afc5a4e3c667)
+> Penjelasan : Student bisa melakukan komen
+
+
 ### Tutor
 Pada menu tutor ini kurang lebih dengan menu student hanya saja pada tutor bisa melihat student yang mereka punya
 
@@ -98,13 +103,39 @@ Pada menu tutor ini kurang lebih dengan menu student hanya saja pada tutor bisa 
 > Penjelasan : Jadi, pada dashboard atau home admin itu bisa langsung melakukan CRUD seperti pada gambar
 
 - Playlists
-![WhatsApp Image 2023-05-10 at 22 35 06](https://github.com/bhaddbaeby/gambarreadme/assets/90855040/69d60066-9b56-45d9-b23b-29f57f583871)
-> Penjelasan : Admin bertugas untuk menambahkan video pembelajaran pada playlist pelatihan
+
+![WhatsApp Image 2023-05-10 at 22 35 06](https://github.com/C1-Kelompok-4/project-akhir-web/assets/90855040/00b8c4f5-9ded-4d54-9d3c-93c824d841bf)
+![WhatsApp Image 2023-05-10 at 22 52 39](https://github.com/C1-Kelompok-4/project-akhir-web/assets/90855040/f76b5090-c512-4032-820d-f9becbc6afbd)
+![WhatsApp Image 2023-05-10 at 22 52 54](https://github.com/C1-Kelompok-4/project-akhir-web/assets/90855040/59c02b19-5aae-42a4-a8b2-4f80255a8d81)
+![WhatsApp Image 2023-05-10 at 22 53 33](https://github.com/C1-Kelompok-4/project-akhir-web/assets/90855040/364d3bf3-bda1-4365-bb24-0e73b3d3d1d8)
+
+> Penjelasan : Disini bisa dilihat jika :
+1. Gambar 1 adalah tampilan admin untuk mengisi kelengkapan form playlist
+2. Terdapat pop up di atas untuk memberitahukan admin jika playlist sudah dibuat
+3. Lalu bisa melihat playlist yang tadi ditambahkan
+4. Bisa melakukan CRUD
 
 - Content
+![WhatsApp Image 2023-05-10 at 22 55 47](https://github.com/C1-Kelompok-4/project-akhir-web/assets/90855040/31f0a7db-75fb-4043-8cd9-497602b97c11)
+![WhatsApp Image 2023-05-10 at 22 55 06](https://github.com/C1-Kelompok-4/project-akhir-web/assets/90855040/876abb59-9ab0-40e0-8196-f1efed0732a1)
+![WhatsApp Image 2023-05-10 at 22 54 02](https://github.com/C1-Kelompok-4/project-akhir-web/assets/90855040/1e013f9f-6643-435d-8da2-6d01f871ab95)
+![WhatsApp Image 2023-05-10 at 22 50 44](https://github.com/C1-Kelompok-4/project-akhir-web/assets/90855040/cf5c738c-50ba-420b-85dc-ecba3acc0442)
+![WhatsApp Image 2023-05-10 at 22 58 09](https://github.com/C1-Kelompok-4/project-akhir-web/assets/90855040/f9b234a7-573e-4326-ba35-1cbd2481708e)
 
+
+> Penjelasan : Tampilan untuk menambahkan content
+1. Admin melihat add content
+2. Lalu menambahkan content sesuai dengan form
+3. Muncuk pop up
+4. Maka admin langsung bisa melakukan CRUD konten
+5. Dan terakhir adalah view content
 
 - Comments
+![WhatsApp Image 2023-05-10 at 23 06 21](https://github.com/C1-Kelompok-4/project-akhir-web/assets/90855040/41cbb1fc-81a1-40d7-a0de-7f17bbb8c6cd)
+> Penjelasan : Disini merupakan tampilan penambahan comment
+
+- Admin Melihat Komen
+![WhatsApp Image 2023-05-10 at 23 11 31](https://github.com/C1-Kelompok-4/project-akhir-web/assets/90855040/aa9904d9-e7a1-4820-9b9f-aff0d2940e70)
 
 
 - Logout
