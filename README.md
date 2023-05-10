@@ -139,8 +139,9 @@ Pada menu tutor ini kurang lebih dengan menu student hanya saja pada tutor bisa 
 
 
 - Logout
-![WhatsApp Image 2023-05-10 at 23 30 16](https://github.com/C1-Kelompok-4/project-akhir-web/assets/120237026/6f5b6447-400e-4910-b893-42c8a8c22052)
+![WhatsApp Image 2023-05-10 at 23 30 16 (2)](https://github.com/C1-Kelompok-4/project-akhir-web/assets/120237026/3cb0750f-b405-40de-bdd3-72b2385c2372)
+
 Maka akan kembali ke halaman login
-![WhatsApp Image 2023-05-10 at 23 32 45](https://github.com/C1-Kelompok-4/project-akhir-web/assets/120237026/ec47b394-a0fe-4263-bcd8-b720606c2c9c)
+![WhatsApp Image 2023-05-10 at 23 32 45 (2)](https://github.com/C1-Kelompok-4/project-akhir-web/assets/120237026/04b5ed8a-6f8c-4f9b-a2d0-1ddd1a71dd56)
 
 
