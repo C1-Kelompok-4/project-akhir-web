@@ -25,22 +25,29 @@ if(isset($_POST['submit'])){
    $image_tmp_name = $_FILES['image']['tmp_name'];
    $image_folder = '../uploaded_files/'.$rename;
 
-   $select_admin = $conn->prepare("SELECT * FROM `admin` WHERE email = ?");
-   $select_admin->execute([$email]);
+   $select_admins = $conn->prepare("SELECT * FROM `admin` WHERE email = ?");
+   $select_admins->execute([$email]);
    
-   if($select_admin->rowCount() > 0){
+   if($select_admins->rowCount() > 0){
       $message[] = 'email already taken!';
    }else{
       if($pass != $cpass){
-         $message[] = 'confirm passowrd not matched!';
+         $message[] = 'confirm password not matched!';
       }else{
-         $insert_admin = $conn->prepare("INSERT INTO `admin`(id, name, email, password, image) VALUES(?,?,?,?,?,?)");
+         $insert_admin = $conn->prepare("INSERT INTO `admin`(id, name, email, password, image) VALUES(?,?,?,?,?)");
+            $insert_admin->execute([$id, $name, $email, $cpass, $rename]);
+            move_uploaded_file($image_tmp_name, $image_folder);
+            $message[] = 'New admin registered! Please login now';
 
-         move_uploaded_file($image_tmp_name, $image_folder);
-         $message[] = 'New Admin Registered! Please Login Now';
-
-         // Set variabel session
-         $_SESSION['success_message'] = $message;
+         $select_admins = $conn->prepare("SELECT * FROM `admin` WHERE email = ? AND password = ? LIMIT 1");
+         $select_admins->execute([$email, $pass]);
+         $row = $select_admins->fetch(PDO::FETCH_ASSOC);
+         
+        // Setelah user berhasil login
+         if($select_admins->rowCount() > 0){
+         $_SESSION['admin_id'] = $row['id'];
+         header('location:login.php');
+         }
       }
    }
 

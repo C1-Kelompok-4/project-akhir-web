@@ -80,13 +80,13 @@ if(isset($_POST['delete_video'])){
       ?>
       <div class="box">
          <div class="tutor">
-            <img src="uploaded_files/<?= $fetch_admin['image']; ?>" alt="">
+            <img src="../uploaded_files/<?= $fetch_admin['image']; ?>" alt="">
             <div>
                <h3><?= $fetch_admin['name']; ?></h3>
                <span><?= $fetch_course['date']; ?></span>
             </div>
          </div>
-         <img src="uploaded_files/<?= $fetch_course['thumb']; ?>" class="thumb" alt="">
+         <img src="../uploaded_files/<?= $fetch_course['thumb']; ?>" class="thumb" alt="">
          <h3 class="title"><?= $fetch_course['title']; ?></h3>
          <a href="playlist.php?get_id=<?= $course_id; ?>" class="inline-btn">Lihat Playlist</a>
       </div>

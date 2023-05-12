@@ -1,6 +1,15 @@
 <?php
 
+session_start();
 include '../components/connect.php';
+
+if(isset($_COOKIE['admin_id'])){
+   $admin_id = $_COOKIE['admin_id'];
+}else{
+   $admin_id = '';
+}
+
+$message = [];
 
 if(isset($_POST['submit'])){
 
@@ -9,23 +18,23 @@ if(isset($_POST['submit'])){
    $pass = sha1($_POST['pass']);
    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
 
-   $select_admin = $conn->prepare("SELECT * FROM `admin` WHERE email = ? AND password = ? LIMIT 1");
-   $select_admin->execute([$email, $pass]);
-   $row = $select_admin->fetch(PDO::FETCH_ASSOC);
+   $select_admins = $conn->prepare("SELECT * FROM `admin` WHERE email = ? AND password = ? LIMIT 1");
+   $select_admins->execute([$email, $pass]);
+   $row = $select_admins->fetch(PDO::FETCH_ASSOC);
    
-   if($select_admin->rowCount() > 0){
-     session_start();
-     $_SESSION['admin_id'] = $row['id'];
+   if($select_admins->rowCount() > 0){
+     $_SESSION['admin_id'] = $row['id']; // set the session variable
+     setcookie('admin_id', $row['id'], time() + 60*60*24*30, '/');
      header('location:dashboard.php');
+     exit;
    }else{
-      session_start();
-      $_SESSION['message'] = 'Incorrect email or password!';
-      header('location:login.php');
+      $message[] = 'incorrect email or password!';
    }
 
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

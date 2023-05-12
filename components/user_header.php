@@ -55,7 +55,7 @@ if(isset($message)){
          ?>
          <img src="uploaded_files/<?= $fetch_profile['image']; ?>" alt="">
          <h3><?= $fetch_profile['name']; ?></h3>
-         <span>Student</span>
+         <span>Mentee</span>
          <a href="profile.php" class="btn">View Profile</a>
          <div class="flex-btn">
             <a href="login.php" class="option-btn">login</a>
@@ -98,7 +98,7 @@ if(isset($message)){
          ?>
          <img src="uploaded_files/<?= $fetch_profile['image']; ?>" alt="">
          <h3><?= $fetch_profile['name']; ?></h3>
-         <span>student</span>
+         <span>Mentee</span>
          <a href="profile.php" class="btn">view profile</a>
          <?php
             }else{
