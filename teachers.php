@@ -46,12 +46,6 @@ if(isset($_SESSION['user_id'])){
 
    <div class="box-container">
 
-      <div class="box offer">
-         <h3>Yuk jadi Tutor !</h3>
-         <p>Bersama Siacademy memajukan generasi bangsa!</p>
-         <a href="mentor/register.php" class="inline-btn">Klik disini</a>
-      </div>
-
       <?php
          $select_tutors = $conn->prepare("SELECT * FROM `tutors`");
          $select_tutors->execute();

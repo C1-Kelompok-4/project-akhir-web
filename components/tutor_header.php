@@ -23,7 +23,7 @@ if(isset($message)){
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="../css/style.css">
 
 </head>
 <body>
@@ -60,7 +60,7 @@ if(isset($message)){
             <a href="login.php" class="option-btn">login</a>
             <a href="register.php" class="option-btn">register</a>
          </div>
-         <a href="components/tutor_logout.php" onclick="return confirm('logout from this website?');" class="delete-btn">logout</a>
+         <a href="../components/tutor_logout.php" onclick="return confirm('logout from this website?');" class="delete-btn">logout</a>
          <?php
             }else{
          ?>
@@ -116,7 +116,7 @@ if(isset($message)){
       <a href="dashboard.php"><i class="fas fa-home"></i><span>home</span></a>
       <a href="playlist.php"><i class="fa-solid fa-bars-staggered"></i><span>playlists</span></a>
       <a href="contents.php"><i class="fas fa-graduation-cap"></i><span>contents</span></a>
-      <a href="comments.php"><i class="fas fa-comment"></i><span>comments</span></a>
+      <a href="comments.php"><i class="fas fa-comment"></i><span>mentee</span></a>
       <a href="login.php" onclick="return confirm('logout from this website?');"><i class="fas fa-right-from-bracket"></i><span>logout</span></a>
    </nav>
 

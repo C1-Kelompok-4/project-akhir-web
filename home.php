@@ -81,13 +81,13 @@ $total_bookmarked = $select_bookmark->rowCount();
          <h3 class="title">Top Categories</h3>
          <div class="flex">
             <a href="search_course.php?"><i class="fas fa-code"></i><span>Development</span></a>
-            <a href="#"><i class="fas fa-chart-simple"></i><span>Business</span></a>
-            <a href="#"><i class="fas fa-pen"></i><span>Design</span></a>
-            <a href="#"><i class="fas fa-chart-line"></i><span>Marketing</span></a>
-            <a href="#"><i class="fas fa-music"></i><span>Music</span></a>
-            <a href="#"><i class="fas fa-camera"></i><span>Photography</span></a>
-            <a href="#"><i class="fas fa-cog"></i><span>Software</span></a>
-            <a href="#"><i class="fas fa-vial"></i><span>Science</span></a>
+            <a href="search_course.php?"><i class="fas fa-chart-simple"></i><span>Business</span></a>
+            <a href="search_course.php?"><i class="fas fa-pen"></i><span>Design</span></a>
+            <a href="search_course.php?"><i class="fas fa-chart-line"></i><span>Marketing</span></a>
+            <a href="search_course.php?"><i class="fas fa-music"></i><span>Music</span></a>
+            <a href="search_course.php?"><i class="fas fa-camera"></i><span>Photography</span></a>
+            <a href="search_course.php?"><i class="fas fa-cog"></i><span>Software</span></a>
+            <a href="search_course.php?"><i class="fas fa-vial"></i><span>Science</span></a>
          </div>
       </div>
 
@@ -102,13 +102,6 @@ $total_bookmarked = $select_bookmark->rowCount();
             <a href="#"><i class="fab fa-bootstrap"></i><span>Bootstrap</span></a>
          </div>
       </div>
-
-      <div class="box tutor">
-         <h3 class="title">Yuk jadi Tutor !</h3>
-         <p>Bersama Siacademy membantu anak bangsa pintar teknologi.</p>
-         <a href="admin/register.php" class="inline-btn">Klik disini</a>
-      </div>
-
    </div>
 
 </section>
