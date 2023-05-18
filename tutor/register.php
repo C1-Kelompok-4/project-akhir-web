@@ -49,6 +49,7 @@ if(isset($_POST['submit'])){
          if($select_tutor->rowCount() > 0){
          $_SESSION['tutor_id'] = $row['id'];
          header('location:login.php');
+         exit;
          }
       }
    }

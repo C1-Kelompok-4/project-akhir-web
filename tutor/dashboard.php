@@ -9,6 +9,7 @@ if(isset($_SESSION['tutor_id'])){
 }else{
    $tutor_id = '';
    header('location:login.php');
+   exit;
 }
 
 $select_contents = $conn->prepare("SELECT * FROM `content` WHERE admin_id = ?");

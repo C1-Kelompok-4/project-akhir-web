@@ -9,6 +9,7 @@ if(isset($_SESSION['tutor_id'])){
  }else{
     $tutor_id = '';
     header('location:login.php');
+    exit;
  }
 
 ?>
@@ -20,6 +21,7 @@ if(isset($_SESSION['tutor_id'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Mentee</title>
+   <link rel="shortcut icon" href="../images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -70,7 +72,7 @@ if(isset($_SESSION['tutor_id'])){
          </div>
          <p>total likes : <span><?= $total_likes ?></span></p>
          <p>total comments : <span><?= $total_comments ?></span></p>
-         <form action="tutor_profile.php" method="post">
+         <form action="mentee_profile.php" method="post">
             <input type="hidden" name="tutor_email" value="<?= $fetch_tutor['email']; ?>">
             <input type="submit" value="view profile" name="tutor_fetch" class="inline-btn">
          </form>
