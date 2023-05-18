@@ -9,6 +9,7 @@ if(isset($_SESSION['tutor_id'])){
 }else{
    $tutor_id = '';
    header('location:login.php');
+   exit;
 }
 
 if(isset($_POST['delete_video'])){
@@ -47,6 +48,7 @@ if(isset($_POST['delete_video'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Dashboard</title>
+   <link rel="shortcut icon" href="../images/silogoo.png" type="image/png">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">

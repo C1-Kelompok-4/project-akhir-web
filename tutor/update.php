@@ -9,6 +9,7 @@ if(isset($_SESSION['tutor_id'])){
 }else{
    $tutor_id = '';
    header('location:login.php');
+   exit;
 }
 
 if(isset($_POST['submit'])){

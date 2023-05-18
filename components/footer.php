@@ -1,5 +1,5 @@
 <footer class="footer">
 
-   &copy; copyright @ <?= date('Y'); ?> by <span>Kelompok 4</span> | Jangan dicopy!
+   &copy; copyright @ <?= date('Y'); ?> by <span>Siacademy</span> | Kelompok 4
 
 </footer>

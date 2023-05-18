@@ -42,8 +42,8 @@ if(isset($_POST['delete_playlist'])){
    $delete_id = $_POST['playlist_id'];
    $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
 
-   $verify_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE id = ? AND tutor_id = ? LIMIT 1");
-   $verify_playlist->execute([$delete_id, $tutor_id]);
+   $verify_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE id = ? AND admin_id = ? LIMIT 1");
+   $verify_playlist->execute([$delete_id, $admin_id]);
 
    if($verify_playlist->rowCount() > 0){
 
@@ -93,8 +93,8 @@ if(isset($_POST['delete_playlist'])){
    <?php
       if(isset($_POST['search']) or isset($_POST['search_btn'])){
       $search = $_POST['search'];
-      $select_videos = $conn->prepare("SELECT * FROM `content` WHERE title LIKE '%{$search}%' AND tutor_id = ? ORDER BY date DESC");
-      $select_videos->execute([$tutor_id]);
+      $select_videos = $conn->prepare("SELECT * FROM `content` WHERE title LIKE '%{$search}%' AND admin_id = ? ORDER BY date DESC");
+      $select_videos->execute([$admin_id]);
       if($select_videos->rowCount() > 0){
          while($fecth_videos = $select_videos->fetch(PDO::FETCH_ASSOC)){ 
             $video_id = $fecth_videos['id'];
@@ -136,8 +136,8 @@ if(isset($_POST['delete_playlist'])){
       <?php
       if(isset($_POST['search']) or isset($_POST['search_btn'])){
          $search = $_POST['search'];
-         $select_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE title LIKE '%{$search}%' AND tutor_id = ? ORDER BY date DESC");
-         $select_playlist->execute([$tutor_id]);
+         $select_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE title LIKE '%{$search}%' AND admin_id = ? ORDER BY date DESC");
+         $select_playlist->execute([$admin_id]);
          if($select_playlist->rowCount() > 0){
          while($fetch_playlist = $select_playlist->fetch(PDO::FETCH_ASSOC)){
             $playlist_id = $fetch_playlist['id'];
